@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+
+service Tarea {
+  // Sends a greeting
+  rpc ping (Ping) returns (Pong) {}
+}
+
+// The request message containing the user's name.
+message Ping {
+  string mensaje = 1;
+  int32 id = 2;
+}
+
+// The response message containing the greetings
+message Pong {
+  string mensaje = 1;
+  int32 id = 2;
+}
