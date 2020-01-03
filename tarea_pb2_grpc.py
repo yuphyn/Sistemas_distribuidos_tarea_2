@@ -14,10 +14,30 @@ class TareaStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.ping = channel.unary_unary(
-        '/Tarea/ping',
-        request_serializer=tarea__pb2.Ping.SerializeToString,
-        response_deserializer=tarea__pb2.Pong.FromString,
+    self.EnviarMensaje = channel.unary_unary(
+        '/Tarea/EnviarMensaje',
+        request_serializer=tarea__pb2.Mensaje.SerializeToString,
+        response_deserializer=tarea__pb2.Vacio.FromString,
+        )
+    self.RecibirMensaje = channel.unary_unary(
+        '/Tarea/RecibirMensaje',
+        request_serializer=tarea__pb2.ID.SerializeToString,
+        response_deserializer=tarea__pb2.Mensaje.FromString,
+        )
+    self.ObtenerUsuarios = channel.unary_unary(
+        '/Tarea/ObtenerUsuarios',
+        request_serializer=tarea__pb2.Vacio.SerializeToString,
+        response_deserializer=tarea__pb2.Data.FromString,
+        )
+    self.AgregarUsuario = channel.unary_unary(
+        '/Tarea/AgregarUsuario',
+        request_serializer=tarea__pb2.Vacio.SerializeToString,
+        response_deserializer=tarea__pb2.ID.FromString,
+        )
+    self.ObtenerMensajes = channel.unary_unary(
+        '/Tarea/ObtenerMensajes',
+        request_serializer=tarea__pb2.ID.SerializeToString,
+        response_deserializer=tarea__pb2.Data.FromString,
         )
 
 
@@ -25,9 +45,37 @@ class TareaServicer(object):
   # missing associated documentation comment in .proto file
   pass
 
-  def ping(self, request, context):
-    """Sends a greeting
-    """
+  def EnviarMensaje(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def RecibirMensaje(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ObtenerUsuarios(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def AgregarUsuario(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ObtenerMensajes(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -35,10 +83,30 @@ class TareaServicer(object):
 
 def add_TareaServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'ping': grpc.unary_unary_rpc_method_handler(
-          servicer.ping,
-          request_deserializer=tarea__pb2.Ping.FromString,
-          response_serializer=tarea__pb2.Pong.SerializeToString,
+      'EnviarMensaje': grpc.unary_unary_rpc_method_handler(
+          servicer.EnviarMensaje,
+          request_deserializer=tarea__pb2.Mensaje.FromString,
+          response_serializer=tarea__pb2.Vacio.SerializeToString,
+      ),
+      'RecibirMensaje': grpc.unary_unary_rpc_method_handler(
+          servicer.RecibirMensaje,
+          request_deserializer=tarea__pb2.ID.FromString,
+          response_serializer=tarea__pb2.Mensaje.SerializeToString,
+      ),
+      'ObtenerUsuarios': grpc.unary_unary_rpc_method_handler(
+          servicer.ObtenerUsuarios,
+          request_deserializer=tarea__pb2.Vacio.FromString,
+          response_serializer=tarea__pb2.Data.SerializeToString,
+      ),
+      'AgregarUsuario': grpc.unary_unary_rpc_method_handler(
+          servicer.AgregarUsuario,
+          request_deserializer=tarea__pb2.Vacio.FromString,
+          response_serializer=tarea__pb2.ID.SerializeToString,
+      ),
+      'ObtenerMensajes': grpc.unary_unary_rpc_method_handler(
+          servicer.ObtenerMensajes,
+          request_deserializer=tarea__pb2.ID.FromString,
+          response_serializer=tarea__pb2.Data.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

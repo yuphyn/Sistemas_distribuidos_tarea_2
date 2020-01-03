@@ -1,19 +1,26 @@
 syntax = "proto3";
 
-
 service Tarea {
-  // Sends a greeting
-  rpc ping (Ping) returns (Pong) {}
+	rpc EnviarMensaje (Mensaje) returns (Vacio);
+  rpc RecibirMensaje (ID) returns (Mensaje);
+	rpc ObtenerUsuarios (Vacio) returns (Data);
+	rpc AgregarUsuario (Vacio) returns (ID);
+	rpc ObtenerMensajes (ID) returns (Data);
 }
 
-// The request message containing the user's name.
-message Ping {
-  string mensaje = 1;
-  int32 id = 2;
+message Vacio {}
+
+message Data {
+	string data = 1;
 }
 
-// The response message containing the greetings
-message Pong {
-  string mensaje = 1;
-  int32 id = 2;
+message ID {
+	int32 id = 1;
+}
+
+message Mensaje {
+	int32 id_ori = 1;
+	int32 id_des = 2;
+	string mensaje = 3;
+  float time = 4;
 }

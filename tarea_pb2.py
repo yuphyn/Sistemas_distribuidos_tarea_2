@@ -20,33 +20,19 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0btarea.proto\"#\n\x04Ping\x12\x0f\n\x07mensaje\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x05\"#\n\x04Pong\x12\x0f\n\x07mensaje\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x05\x32\x1f\n\x05Tarea\x12\x16\n\x04ping\x12\x05.Ping\x1a\x05.Pong\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0btarea.proto\"\x07\n\x05Vacio\"\x14\n\x04\x44\x61ta\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t\"\x10\n\x02ID\x12\n\n\x02id\x18\x01 \x01(\x05\"H\n\x07Mensaje\x12\x0e\n\x06id_ori\x18\x01 \x01(\x05\x12\x0e\n\x06id_des\x18\x02 \x01(\x05\x12\x0f\n\x07mensaje\x18\x03 \x01(\t\x12\x0c\n\x04time\x18\x04 \x01(\x02\x32\xab\x01\n\x05Tarea\x12!\n\rEnviarMensaje\x12\x08.Mensaje\x1a\x06.Vacio\x12\x1f\n\x0eRecibirMensaje\x12\x03.ID\x1a\x08.Mensaje\x12 \n\x0fObtenerUsuarios\x12\x06.Vacio\x1a\x05.Data\x12\x1d\n\x0e\x41gregarUsuario\x12\x06.Vacio\x1a\x03.ID\x12\x1d\n\x0fObtenerMensajes\x12\x03.ID\x1a\x05.Datab\x06proto3')
 )
 
 
 
 
-_PING = _descriptor.Descriptor(
-  name='Ping',
-  full_name='Ping',
+_VACIO = _descriptor.Descriptor(
+  name='Vacio',
+  full_name='Vacio',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='mensaje', full_name='Ping.mensaje', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='Ping.id', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -60,27 +46,51 @@ _PING = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=15,
-  serialized_end=50,
+  serialized_end=22,
 )
 
 
-_PONG = _descriptor.Descriptor(
-  name='Pong',
-  full_name='Pong',
+_DATA = _descriptor.Descriptor(
+  name='Data',
+  full_name='Data',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='mensaje', full_name='Pong.mensaje', index=0,
+      name='data', full_name='Data.data', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=24,
+  serialized_end=44,
+)
+
+
+_ID = _descriptor.Descriptor(
+  name='ID',
+  full_name='ID',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='Pong.id', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      name='id', full_name='ID.id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -97,27 +107,95 @@ _PONG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=52,
-  serialized_end=87,
+  serialized_start=46,
+  serialized_end=62,
 )
 
-DESCRIPTOR.message_types_by_name['Ping'] = _PING
-DESCRIPTOR.message_types_by_name['Pong'] = _PONG
+
+_MENSAJE = _descriptor.Descriptor(
+  name='Mensaje',
+  full_name='Mensaje',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id_ori', full_name='Mensaje.id_ori', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='id_des', full_name='Mensaje.id_des', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='mensaje', full_name='Mensaje.mensaje', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='Mensaje.time', index=3,
+      number=4, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=64,
+  serialized_end=136,
+)
+
+DESCRIPTOR.message_types_by_name['Vacio'] = _VACIO
+DESCRIPTOR.message_types_by_name['Data'] = _DATA
+DESCRIPTOR.message_types_by_name['ID'] = _ID
+DESCRIPTOR.message_types_by_name['Mensaje'] = _MENSAJE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Ping = _reflection.GeneratedProtocolMessageType('Ping', (_message.Message,), {
-  'DESCRIPTOR' : _PING,
+Vacio = _reflection.GeneratedProtocolMessageType('Vacio', (_message.Message,), {
+  'DESCRIPTOR' : _VACIO,
   '__module__' : 'tarea_pb2'
-  # @@protoc_insertion_point(class_scope:Ping)
+  # @@protoc_insertion_point(class_scope:Vacio)
   })
-_sym_db.RegisterMessage(Ping)
+_sym_db.RegisterMessage(Vacio)
 
-Pong = _reflection.GeneratedProtocolMessageType('Pong', (_message.Message,), {
-  'DESCRIPTOR' : _PONG,
+Data = _reflection.GeneratedProtocolMessageType('Data', (_message.Message,), {
+  'DESCRIPTOR' : _DATA,
   '__module__' : 'tarea_pb2'
-  # @@protoc_insertion_point(class_scope:Pong)
+  # @@protoc_insertion_point(class_scope:Data)
   })
-_sym_db.RegisterMessage(Pong)
+_sym_db.RegisterMessage(Data)
+
+ID = _reflection.GeneratedProtocolMessageType('ID', (_message.Message,), {
+  'DESCRIPTOR' : _ID,
+  '__module__' : 'tarea_pb2'
+  # @@protoc_insertion_point(class_scope:ID)
+  })
+_sym_db.RegisterMessage(ID)
+
+Mensaje = _reflection.GeneratedProtocolMessageType('Mensaje', (_message.Message,), {
+  'DESCRIPTOR' : _MENSAJE,
+  '__module__' : 'tarea_pb2'
+  # @@protoc_insertion_point(class_scope:Mensaje)
+  })
+_sym_db.RegisterMessage(Mensaje)
 
 
 
@@ -127,16 +205,52 @@ _TAREA = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=89,
-  serialized_end=120,
+  serialized_start=139,
+  serialized_end=310,
   methods=[
   _descriptor.MethodDescriptor(
-    name='ping',
-    full_name='Tarea.ping',
+    name='EnviarMensaje',
+    full_name='Tarea.EnviarMensaje',
     index=0,
     containing_service=None,
-    input_type=_PING,
-    output_type=_PONG,
+    input_type=_MENSAJE,
+    output_type=_VACIO,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RecibirMensaje',
+    full_name='Tarea.RecibirMensaje',
+    index=1,
+    containing_service=None,
+    input_type=_ID,
+    output_type=_MENSAJE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ObtenerUsuarios',
+    full_name='Tarea.ObtenerUsuarios',
+    index=2,
+    containing_service=None,
+    input_type=_VACIO,
+    output_type=_DATA,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AgregarUsuario',
+    full_name='Tarea.AgregarUsuario',
+    index=3,
+    containing_service=None,
+    input_type=_VACIO,
+    output_type=_ID,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ObtenerMensajes',
+    full_name='Tarea.ObtenerMensajes',
+    index=4,
+    containing_service=None,
+    input_type=_ID,
+    output_type=_DATA,
     serialized_options=None,
   ),
 ])
