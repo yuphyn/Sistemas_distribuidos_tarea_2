@@ -22,5 +22,5 @@ message Mensaje {
 	int32 id_ori = 1;
 	int32 id_des = 2;
 	string mensaje = 3;
-  float time = 4;
+  	string time = 4;
 }

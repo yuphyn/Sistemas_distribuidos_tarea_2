@@ -17,7 +17,7 @@ class Listener(tarea_pb2_grpc.TareaServicer):
 
     def __init__(self):
         self.users = {}
-        self.contador=0
+        self.contador=1
         self.last = []
 
     def __str__(self):
@@ -41,7 +41,7 @@ class Listener(tarea_pb2_grpc.TareaServicer):
 
         
         lod = open('log.txt', 'a')
-        lod.write('TIMESTAMP: '+ str(time) +' ID_origen: ' + str(id_origen) + ' ID_destino: ' + str(id_destino) + ' MENSAJE: ' + mensaje +'\n')
+        lod.write('TIMESTAMP: '+ str(timestamp) +' ID_origen: ' + str(id_origen) + ' ID_destino: ' + str(id_destino) + ' MENSAJE: ' + mensaje +'\n')
         lod.close()
         self.users[id_origen].append(('envio',mensaje))
         self.users[id_destino].append(('recibo',mensaje))
@@ -73,10 +73,10 @@ class Listener(tarea_pb2_grpc.TareaServicer):
             )
         else:
             mensaje = tarea_pb2.Mensaje(
-                id_ori = 0,
+                id_ori = -1,
                 id_des = id_destino,
-                mensaje = "FUERA PINERA",
-                time = 0.0
+                mensaje = "ESTE MENSAJE NO ES VALIDO",
+                time = "TIMESTAMP NO VALIDO"
             )
         
         return mensaje
@@ -116,8 +116,8 @@ def serve():
     server.start()
     try:
         while True:
-            print("Server Running : threadcount %i" % (threading.active_count()))
-            time.sleep(10)
+            print("Server Running")
+            time.sleep(15)
     except KeyboardInterrupt:
         print("KeyboardInterrupt")
         server.stop(0)

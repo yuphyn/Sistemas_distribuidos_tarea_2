@@ -8,9 +8,7 @@ services:
       - DEBUG
     network_mode: host
     ports:
-      - 6000-7000:8500
-    volumes:
-      - ./syntax:/syntax
+      - 6000-7000:9999
     stdin_open: true
     tty: true
     command: client.py
@@ -23,10 +21,9 @@ services:
       - DEBUG
     network_mode: host
     ports:
-      - 8500:8500
+      - 9999:9999
     volumes:
       - ./log.txt:/log.txt
-      - ./syntax:/syntax
     stdin_open: true
     tty: true
     command: server.py
