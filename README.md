@@ -3,7 +3,7 @@
 ## Integrantes:
 
 * Cesar Quiroz  Mansilla 201573578-6
-* jorge Contreras Cabreras
+* jorge Contreras Cabreras 201573547-6
 
 ### Actividad 1
 
@@ -17,6 +17,7 @@ Para la actividad uno debe dirigirse dentro de la carpeta actividad 1 y correr e
 
 Para poder ejecutar comandos por consola debe abrir otra terminal y ejecutar:
 
-> docker attach \<Nombre del container\>
+> docker attach "Nombre del container"
 
-los nombres del conteiner tienen la siguiente forma actividad1_clients_N con N corespondiente al cliente con ID N-1. 
+los nombres del conteiner tienen la siguiente forma actividad1_clients_N con N corespondiente al cliente con ID N. 
+También es posible acceder con el id del container, para obtenerlos basta con escribir: docker ps -a
