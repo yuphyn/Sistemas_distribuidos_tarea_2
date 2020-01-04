@@ -27,9 +27,7 @@ services:
     stdin_open: true
     tty: true
     build: ./
-    command: python ./Dummy.py
+    command: python ./client.py
     network_mode: host
-    volumes:
-      - ./cliente
     depends_on:
       - server
