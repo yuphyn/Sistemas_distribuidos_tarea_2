@@ -1,3 +1,0 @@
-TIMESTAMP: <module 'time' (built-in)> ID_origen: 1 ID_destino: 0 MENSAJE: pinera chupalo
-TIMESTAMP: <module 'time' (built-in)> ID_origen: 2 ID_destino: 1 MENSAJE: cesar chupalo
-TIMESTAMP: <module 'time' (built-in)> ID_origen: 1 ID_destino: 2 MENSAJE: cesar chupalo con mayo

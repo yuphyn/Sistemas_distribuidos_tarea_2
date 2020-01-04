@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  clients:
+    build: ./
+    environment:
+      - DEBUG
+    network_mode: host
+    ports:
+      - 6000-7000:8500
+    volumes:
+      - ./syntax:/syntax
+    stdin_open: true
+    tty: true
+    command: client.py
+    depends_on:
+      - server
+
+  server:
+    build: ./ 
+    environment:
+      - DEBUG
+    network_mode: host
+    ports:
+      - 8500:8500
+    volumes:
+      - ./log.txt:/log.txt
+      - ./syntax:/syntax
+    stdin_open: true
+    tty: true
+    command: server.py

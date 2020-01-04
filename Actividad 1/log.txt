@@ -1,0 +1,1 @@
+TIMESTAMP: <module 'time' (built-in)> ID_origen: 0 ID_destino: 1 MENSAJE: hola
