@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbit"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    network_mode: host
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+      - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
+  server:
+    container_name: server
+    stdin_open: true
+    tty: true
+    build: ./
+    command: python ./server.py
+    network_mode: host
+    volumes:
+      - ./servidor
+    depends_on:
+      - rabbitmq
+  clients:
+    stdin_open: true
+    tty: true
+    build: ./
+    command: python ./Dummy.py
+    network_mode: host
+    volumes:
+      - ./cliente
+    depends_on:
+      - server
