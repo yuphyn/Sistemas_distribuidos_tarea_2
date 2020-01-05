@@ -1,3 +1,0 @@
-TIMESTAMP: 04-01-2020 05:44:30 ID_origen: 2 ID_destino: 1 MENSAJE: hola
-TIMESTAMP: 04-01-2020 05:44:36 ID_origen: 1 ID_destino: 2 MENSAJE: hola
-TIMESTAMP: 04-01-2020 05:44:58 ID_origen: 2 ID_destino: 1 MENSAJE: como estas
