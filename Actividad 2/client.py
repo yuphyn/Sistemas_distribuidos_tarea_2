@@ -33,7 +33,10 @@ def RecibirMensaje():
         mensaje=mensaje[2:-1].split(" ")
         if mensaje[0]==user_id:
             if mensaje[1]=="mensajeee":
-                print(mensaje[4]+" ID_ORIGEN: "+mensaje[2]+ "MENSAJE: "+mensaje[3])
+                nuevo_str=""
+                for x in mensaje[3].split("_"):
+                    nuevo_str=nuevo_str+x+" "
+                print(mensaje[4]+" ID_ORIGEN: "+mensaje[2]+ " MENSAJE: "+nuevo_str)
             elif mensaje[1]=="mensaje":
                 print("Mensajes:")
                 if(len(mensaje)>2):
