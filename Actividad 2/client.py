@@ -14,7 +14,7 @@ def EnviarMensaje():
             mensaje="usuarios "+str(user_id)
             channel.basic_publish(exchange='', routing_key='hello', body=mensaje)
         elif opcion=="2":
-            mensaje="mensajes"+str(user_id)
+            mensaje="mensaje "+str(user_id)
             channel.basic_publish(exchange='', routing_key='hello', body=mensaje)
         elif opcion=="3":
             ingreso2 = input("Ingrese mensaje de la siguiente forma: (ID_destino) (MENSAJE):\n")
@@ -29,14 +29,25 @@ def EnviarMensaje():
 def RecibirMensaje():
     global user_id
     def callback(ch, method, properties, body):
-        mensaje=body.split(" ")
+        mensaje=str(body)
+        mensaje=mensaje[2:-1].split(" ")
         if mensaje[0]==user_id:
-            if mensaje[1]=="mensaje":
+            if mensaje[1]=="mensajeee":
                 print(mensaje[4]+" ID_ORIGEN: "+mensaje[2]+ "MENSAJE: "+mensaje[3])
-            else:
-                contenido=mensaje[1:]
-                for x in contenido:
-                    print(x)
+            elif mensaje[1]=="mensaje":
+                print("Mensajes:")
+                if(len(mensaje)>2):
+                    contenido=mensaje[2:]
+                    for x in contenido:
+                        print(x)
+                else:
+                    print('No tienes mensajes')
+            elif mensaje[1]=="usuarios":
+                print("Usuarios:")
+                if(len(mensaje)>2):
+                    contenido=mensaje[2:]
+                    for x in contenido:
+                        print(x)
 
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(host='localhost'))
@@ -44,7 +55,7 @@ def RecibirMensaje():
 
     channel.exchange_declare(exchange='logs', exchange_type='fanout')
 
-    result = channel.queue_declare(queue=user_id, exclusive=True)
+    result = channel.queue_declare(queue=user_id)
     queue_name = result.method.queue
 
     channel.queue_bind(exchange='logs', queue=queue_name)
@@ -64,6 +75,10 @@ if __name__ == "__main__":
     channel.queue_declare(queue='hello')
     channel.basic_publish(exchange='', routing_key='hello', body=mensaje)
     connection.close()
+    print('Bienvenido, eres el usurio con ID: '+user_id)
+    print('Para ver los usuarios conectador ingresar: 1')
+    print('para ver los mensajes enviados ingresar: 2')
+    print('para enviar un mensaje ingresar: 3')
 
     tRecibir = threading.Thread(target=RecibirMensaje)
     tEnviar = threading.Thread(target=EnviarMensaje)

@@ -8,7 +8,6 @@ def callback(ch, method, properties, body):
     global usuarios
     mensaje=mensaje[2:-1].split(" ")
     if mensaje[0]=="registrar":
-        time.sleep(10)
         usuarios[mensaje[1]]=[]
         connection = pika.BlockingConnection(
             pika.ConnectionParameters(host='localhost'))
@@ -16,14 +15,15 @@ def callback(ch, method, properties, body):
 
         channel.exchange_declare(exchange='logs', exchange_type='fanout')
 
-        result = channel.queue_declare(queue=mensaje[1], exclusive=True)
+        result = channel.queue_declare(queue=mensaje[1])
         queue_name = result.method.queue
 
         channel.queue_bind(exchange='logs', queue=queue_name)
         connection.close()
+        print(usuarios)
 
-    if mensaje[0]=="usuarios":
-        reenviar=mensaje[1]
+    elif mensaje[0]=="usuarios":
+        reenviar=mensaje[1]+" usuarios"
         for x in usuarios.keys():
             reenviar=reenviar+" "+x
         connection = pika.BlockingConnection(
@@ -36,7 +36,7 @@ def callback(ch, method, properties, body):
         connection.close()
 
     elif mensaje[0]=="mensaje":
-        reenviar=mensaje[1]
+        reenviar=mensaje[1]+" mensaje"
         for x,y in usuarios.items():
             if x==mensaje[1]:
                 for a,b in y:
@@ -52,20 +52,24 @@ def callback(ch, method, properties, body):
         connection.close()
 
     else:
-        usuarios[mensaje[1]].append("envio",mensaje[4])
-        usuarios[mensaje[2]].append("recibo",mensaje[4])
-
+        usuarios[mensaje[1]].append(("envio",mensaje[4]))
+        usuarios[mensaje[2]].append(("recibo",mensaje[4]))
         log=open("log.txt","a")
-        log.write("TIMESTAMP: "+mensaje[5]+" ID_ORIGEN: "+mensaje[2]+" ID_DESTINO: "+mensaje[3]+" MENSAJE: "+mensaje[4])
+        log.write("TIMESTAMP: "+mensaje[-1]+" ID_ORIGEN: "+mensaje[3]+" ID_DESTINO: "+mensaje[2]+" MENSAJE: ")
+        
+        mensaje__=""
+        for x in mensaje[3:-1]:
+            mensaje__=mensaje__+x+"-"
+            log.write(x+" ")
         log.close()
-        reenviar=mensaje[2]+" mensaje "+mensaje[1]+" "+mensaje[3]+" "+mensaje[4]
+        reenviar=mensaje[2]+" mensajeee "+mensaje[1]+" "+mensaje__+" "+mensaje[4]
         connection = pika.BlockingConnection(
             pika.ConnectionParameters(host='localhost'))
         channel = connection.channel()
 
         channel.exchange_declare(exchange='logs', exchange_type='fanout')
 
-        channel.basic_publish(exchange='logs', routing_key='', body=mensaje)
+        channel.basic_publish(exchange='logs', routing_key='', body=reenviar)
         connection.close()
 
 
