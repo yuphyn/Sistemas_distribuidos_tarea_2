@@ -20,7 +20,6 @@ def callback(ch, method, properties, body):
 
         channel.queue_bind(exchange='logs', queue=queue_name)
         connection.close()
-        print(usuarios)
 
     elif mensaje[0]=="usuarios":
         reenviar=mensaje[1]+" usuarios"
@@ -52,17 +51,18 @@ def callback(ch, method, properties, body):
         connection.close()
 
     else:
-        usuarios[mensaje[1]].append(("envio",mensaje[4]))
-        usuarios[mensaje[2]].append(("recibo",mensaje[4]))
+        usuarios[mensaje[1]].append(("envio",mensaje[3]))
+        usuarios[mensaje[2]].append(("recibo",mensaje[3]))
         log=open("log.txt","a")
         log.write("TIMESTAMP: "+mensaje[-1]+" ID_ORIGEN: "+mensaje[3]+" ID_DESTINO: "+mensaje[2]+" MENSAJE: ")
         
         mensaje__=""
         for x in mensaje[3:-1]:
-            mensaje__=mensaje__+x+"-"
+            mensaje__=mensaje__+x+"_"
             log.write(x+" ")
+        log.write("\n")
         log.close()
-        reenviar=mensaje[2]+" mensajeee "+mensaje[1]+" "+mensaje__+" "+mensaje[4]
+        reenviar=mensaje[2]+" mensajeee "+mensaje[1]+" "+mensaje__+" "+mensaje[-1]
         connection = pika.BlockingConnection(
             pika.ConnectionParameters(host='localhost'))
         channel = connection.channel()
@@ -74,6 +74,8 @@ def callback(ch, method, properties, body):
 
 
 if __name__ == "__main__":
+    log=open("log.txt","w")
+    log.close()
     usuarios={}
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(host='localhost'))

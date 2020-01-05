@@ -19,8 +19,8 @@ def EnviarMensaje():
         elif opcion=="3":
             ingreso2 = input("Ingrese mensaje de la siguiente forma: (ID_destino) (MENSAJE):\n")
             t = time.time()
-            timestamp_final = time.strftime('%d-%m-%Y %H:%M:%S', time.localtime(t))
-            mensaje="enviar "+str(user_id)+" "+ingreso2+timestamp_final
+            timestamp_final = time.strftime('%d-%m-%Y..%H:%M:%S', time.localtime(t))
+            mensaje="enviar "+str(user_id)+" "+ingreso2+" "+timestamp_final
             channel.basic_publish(exchange='', routing_key='hello', body=mensaje)
         else:
             print("opcion no valida")
