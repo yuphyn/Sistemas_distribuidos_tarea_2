@@ -5,13 +5,21 @@
 * Cesar Quiroz  Mansilla 201573578-6
 * jorge Contreras Cabreras 201573547-6
 
-### Actividad 1
+### Actividad 1 y 2
 
-Para la actividad uno debe dirigirse dentro de la carpeta actividad 1 y correr el siguiente comando:
+Para la actividad 1 uno debe dirigirse dentro de la carpeta actividad 1 y correr el siguiente comando:
 
 >docker-compose build
 
 >docker-compose up --scale clients=N
+
++ Donde N es el numero de clientes a conectarse.
+
+Para la actividad 2 uno debe dirigirse dentro de la carpeta actividad 2 y correr el siguiente comando:
+
+>docker-compose build
+
+>docker-compose up --scale client=N
 
 + Donde N es el numero de clientes a conectarse.
 
